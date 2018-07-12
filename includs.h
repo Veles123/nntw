@@ -6,6 +6,6 @@
 #include <vector>
 #include <string>
 #include <iostream>
-
+using namespace std;
 
 #endif // INCLUDS_H_INCLUDED

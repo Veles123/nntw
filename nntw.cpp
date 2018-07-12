@@ -1,25 +1,59 @@
 #include "nntw.h"
 
-ns::_nn::_nn(int l_,  vector<double*> w_, vector<std::string> act_)   {
+ns::_nn::_nn(int l_,int* nl_,  double*** w_, vector<std::string> act_)   {
     this->l = l_;
     this->w = w_;
+    this->nl= nl_;
+    this->act = new (double[this->l](double));
     try {
     for(int i =0 ;i < l_;i++)   {
         if (act_[i]=="relu")
-        this->(act).push_back(&ns::_nn::relu);
+        this->(act)[i] = (&ns::_nn::relu);
         else if(act_[i]=="tanh")
-        this->(act).push_back(&ns::_nn::tanh);
+        this->(act)[i] = (&ns::_nn::tanh);
         else if(act_[i]=="sigm")
-        this->(act).push_back(&ns::_nn::sigmoid);
-        else throw(ex_(""));
+        this->(act)[i] = (&ns::_nn::sigmoid);
+        else throw(ex_("INcorrect funcion name"));
 
         }
     }
     catch(ex_ er)   {
-    if}
+    std::cout<<er.r;
+    break;}
 
 
 }
+
+
+double* ns::_nn::think(double* in) {
+    double* out = new double[this->nl[1]];
+    for(int i = 0; i < this->nl[1];i++)
+        out[i] =  this->act(this->sum(1, this->weighing(1,i,in)));
+    return think(out, 2);
+}
+
+double *think(double* in, int l) {
+    double* out = new double[this->nl[l]];
+    for(int i = 0; i < this->nl[l];i++)
+        out[i] =  this->act(this->sum(l, this->weighing(l,i,in)));
+    return think(out, l+1);
+}
+
+double ns::_nn::sum(int l, double* in)    {
+    double sum = 0.0;
+    for(int i = 0, i<this->nl[l];i++)
+        sum+=in[i];
+    return sum;
+}
+
+double* ns::_nn::weighing(int l, int n, double* in)    {
+    double *out = new double[this->nl[l]];
+    for(int i = 0; i < nl[l]; i++)
+    for(int j = 0; j< nl[l-1];j++)
+    out[i]*=this->w[l][i][j];
+
+}
+
 
 double ns::_nn::sigmoid(double in)   {
     return 1/(1+exp(in));
@@ -32,3 +66,6 @@ return (exp(in<<1)-1) / (exp(in<<1)+1)
 double ns::_nn::relu(double in)   {
     return (in<=0) ? 0 : x;
 }
+
+
+
