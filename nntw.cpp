@@ -35,7 +35,7 @@ double* ns::_nn::think(double* in) {
         out[i] =  (this->*act[i])(
                             this->sum(1,
                             this->weighing(1,i,in)));
-    return think(out, 2);
+    return think(out, 1);
 }
 
 double *ns::_nn::think(double* in, int l) {
@@ -47,8 +47,8 @@ double *ns::_nn::think(double* in, int l) {
 
 double ns::_nn::sum(int l, double* in)    {
     double sum = 0.0;
-    for(int i = 0; i<this->nl[l];i++)
-        sum+=in[i];
+    for(int i = 0; i<this->nl[l-1];i++)
+        sum=sum+in[i];
     return sum;
 }
 
@@ -57,7 +57,7 @@ double* ns::_nn::weighing(int l, int n, double* in)    {
     for(int i = 0; i < nl[l]; i++)
     for(int j = 0; j< nl[l-1];j++)
     out[i]*=this->w[l][i][j];
-
+return out;
 }
 
 
