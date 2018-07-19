@@ -13,6 +13,7 @@ class ex_   {
 
 class _nn   {
     public:
+    int s_in;
     int l;
     int* nl;
     double ***w;
