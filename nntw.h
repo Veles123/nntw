@@ -21,7 +21,7 @@ class _nn   {
 
     _nn(int l_, int* nl_, double***w_, vector<std::string> act_);
     double *think(double* in);
-
+	~_nn();
 
  private:
 

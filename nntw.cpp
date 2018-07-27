@@ -32,16 +32,29 @@ ns::_nn::_nn(int l_,int* nl_,  double*** w_, vector<std::string> act_)   {
 double* ns::_nn::think(double* in) {
     //double a = **_nn::act(1);
     double* out = new double[this->nl[1]];
-    for(int i = 0; i < this->s_in;i++)
-        out[i] =  (this->*act[i])(
+//    for(int j = 0; j< this->nl[0];j++)
+	for(int i = 0; i < this->nl[0];i++)
+        out[i] =  (this->*act[0])(
                             this->ws(0,i,in));
     return think(out, 1);
+}
+
+ns::_nn::~_nn() {
+	for (int i = 0; i < this->l; i++) {
+		delete this->act;
+		for (int j = 0; j < this->nl[i]; i++)
+			delete []this->w[i][j];
+		delete[]this->w[i];
+	}
+	delete[]this->w;
+	delete this->nl;
+	
 }
 
 double *ns::_nn::think(double* in, int l) {
     double* out = new double[ this->nl[l]];
     for(int i = 0; i < this->nl[l];i++)
-          out[i] =  (this->*act[i])( this->ws(l,i,in));
+          out[i] =  (this->*act[l])( this->ws(l,i,in));
     if(l<l)
         return think(out, l+1);
     else return out;

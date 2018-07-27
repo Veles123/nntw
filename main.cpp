@@ -23,7 +23,7 @@ int main(){
     _w[0][1][1] = 0.8;
 
     _w[0][2] = new double[2];
-    _w[0][2][0] = 1.0;
+    _w[0][2][0] = 0.8;
     _w[0][2][1] = 0.1;
     //second layer first neur
     _w[1] = new double*[1];
@@ -40,6 +40,16 @@ int main(){
     cout << N->think(i)[0];
 	_getch();
 
+	delete k;
+	delete _w[0][0];
+	delete _w[0][1];
+	delete _w[0][2];
+	delete _w[1][0];
+	
+	delete _w[0];
+	delete _w[1];
+	delete _w;
+	delete N;
 
 return 0;
 }
