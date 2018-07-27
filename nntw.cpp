@@ -1,3 +1,4 @@
+#include "includs.h"
 #include "nntw.h"
 
 ns::_nn::_nn(int l_,int* nl_,  double*** w_, vector<std::string> act_)   {
@@ -33,15 +34,14 @@ double* ns::_nn::think(double* in) {
     double* out = new double[this->nl[1]];
     for(int i = 0; i < this->s_in;i++)
         out[i] =  (this->*act[i])(
-                            this->sum(1,
-                            this->weighing(0,i,in)));
+                            this->ws(0,i,in));
     return think(out, 1);
 }
 
 double *ns::_nn::think(double* in, int l) {
     double* out = new double[ this->nl[l]];
     for(int i = 0; i < this->nl[l];i++)
-          out[i] =  (this->*act[i])(this->sum(l, this->weighing(l,i,in)));
+          out[i] =  (this->*act[i])( this->ws(l,i,in));
     if(l<l)
         return think(out, l+1);
     else return out;
@@ -53,12 +53,15 @@ double ns::_nn::sum(int l, double* in)    {
         sum=sum+in[i];
     return sum;
 }
-
-double* ns::_nn::weighing(int l, int n, double* in)    {
-    double *out = new double[this->nl[l]];
-    for(int i = 0; i < nl[l]; i++)
-    for(int j = 0; j< (l==0) ? this->s_in : nl[l-1];j++)
-    out[i]=in[j]*this->w[l][i][j];
+/*Принимает
+l - номер слоя
+n - номер нейрона в слое для которого нужгно подсчитать веса
+in - входящие даные размером nl[l-1]*/
+double ns::_nn::ws(int l, int n, double* in)    {
+	double out = 0;// new double[this->nl[l]];
+    //for(int i = 0; i < nl[l]; i++)
+    for(int j = 0; j< ((l==0) ? this->s_in : nl[l-1]);j++)
+    out+=in[j]*this->w[l][n][j];
 return out;
 }
 
@@ -74,6 +77,3 @@ return (exp(in*2)-1) / (exp(in*2)+1);
 double ns::_nn::relu(double in)   {
     return (in<=0) ? 0 : in;
 }
-
-
-

@@ -4,9 +4,9 @@
 int main(){
 
     vector<std::string> ac;
-    ac.push_back("sigm");
     ac.push_back("relu");
-    ac.push_back("tanh");
+    ac.push_back("relu");
+    //ac.push_back("tanh");
     int *k = new int[2];
     k[0] = 3;
     k[1] = 1;
@@ -32,13 +32,13 @@ int main(){
     _w[1][0][1] = 0.2;
     _w[1][0][2] = 0.3;
 
-    ns::_nn * N = new ns::_nn(3, k, _w, ac );
+    ns::_nn * N = new ns::_nn(2, k, _w, ac );
     N->s_in = 2;
     double* i = new double[2];
     i[0] = 1;
     i[1] = 1;
-    cout << N->think(i);
-
+    cout << N->think(i)[0];
+	_getch();
 
 
 return 0;

@@ -26,7 +26,7 @@ class _nn   {
  private:
 
     double sum(int, double*);
-    double* weighing(int, int, double*);
+    double ws(int, int, double*);
     double *think(double* in, int);
     //vector<double> think(vector<double> in, int n);
     double sigmoid(double in);

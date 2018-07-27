@@ -6,6 +6,9 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <conio.h>
+
+
 using std::string;
 using std::cout;
 using std::cin;
