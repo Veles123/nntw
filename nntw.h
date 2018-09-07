@@ -7,24 +7,29 @@ namespace ns {
 
 class ex_   {
    public: string r;
-    ex_(std::string i)
-    { this->r = i;};
+		   int ir;
+    ex_(int ir_, std::string it)
+    { this->r = it;
+	this->ir = ir_;
+	};
 };
-
+/*класс готов*/
 class _nn   {
     public:
     int s_in;
     int l;
     int* nl;
     double ***w;
+	double *correctW;
     double (_nn::**act)(double);
 
-    _nn(int l_, int* nl_, double***w_, vector<std::string> act_);
+    _nn(int l_, int* nl_, double***w_, vector<std::string> act_, double* d= NULL);
+	_nn(int l_, int* nl_, char tgw, int llim, int rlim, int s_in_, vector<std::string> act_);
     double *think(double* in);
 	~_nn();
 
  private:
-
+	 int ex = 0;
     double sum(int, double*);
     double ws(int, int, double*);
     double *think(double* in, int);
