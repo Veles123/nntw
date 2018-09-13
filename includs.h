@@ -1,12 +1,14 @@
 #ifndef INCLUDS_H_INCLUDED
 #define INCLUDS_H_INCLUDED
 
+#include "version_info.h"
 
 #include <math.h>
 #include <vector>
 #include <string>
 #include <iostream>
 #include <conio.h>
+#include <Windows.h>
 
 
 using std::string;

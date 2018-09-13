@@ -38,16 +38,21 @@ int main(){
 	cor[1] = 0.3;
     //ns::_nn * N = new ns::_nn(2, k, _w, ac, cor );
 	
-	ns::_nn * N = new ns::_nn(2, k, 'k', 0, 1, 2, ac);
+	ns::_nn * N = new ns::_nn(2, k, 'r', 0, 1, 2, ac);
+	//HANDLE* f;
+	ns::loader::save(/*f,*/ N, L"", L"Dina", GV_LI);
+	ns::_nn* P = new ns::_nn("for load");
+	ns::loader::load(P, L"", L"Dina", GV_LI);
 
     double* i = new double[2];
     i[0] = 0;
     i[1] = 0;
-    cout << N->think(i)[0];
+    cout << P->think(i)[0];
 	_getch();
 
 	
 	delete N;
+	delete P;
 
 return 0;
 }
