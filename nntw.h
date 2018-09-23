@@ -19,20 +19,21 @@ class _nn   {
     int s_in;
     int l;
     int* nl;
-    double ***w;
+    double ***mw;
+	double *w;
 	double *correctW;
     double (_nn::**act)(double);
 	int q_w;
 	char *cact;
 
 	_nn(std::string);
-    _nn(int l_, int* nl_, double***w_, vector<std::string> act_, double* d= NULL);
-	_nn(int l_, int* nl_, char tgw, int llim, int rlim, int s_in_, vector<std::string> act_);
+    _nn(int *l_, int* /*менял*/nl_, double/*менял****/*&w_, char* act_, double* d, int s_in_);
+	_nn(int l_, int* nl_, char tgw, int llim, int rlim, int s_in_, std::string* act_);
     double *think(double* in);
 	~_nn();
 
  private:
-	 int ex = 0;
+	int ex = 0;
     double sum(int, double*);
     double ws(int, int, double*);
     double *think(double* in, int);
@@ -40,7 +41,6 @@ class _nn   {
     double sigmoid(double in);
     double tanh(double in);
     double relu(double in);
-
 };
 
 class loader
@@ -49,7 +49,7 @@ public:
 	loader();
 	~loader();
 	static int save(/*void*,*/ _nn*, std::wstring, std::wstring, int v);
-	static int load( _nn* n, std::wstring, std::wstring, int v);
+	static ns::_nn* load( /*_nn* n,*/ std::wstring, std::wstring, int v);
 
 private:
 
@@ -57,5 +57,5 @@ private:
 
 }
 
-#endif // NNTW_H_INCLUDED
+#endif // NNTW_H_INCLUDEd
 
