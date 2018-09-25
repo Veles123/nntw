@@ -9,11 +9,13 @@
 #include <iostream>
 #include <conio.h>
 #include <Windows.h>
+#include <cstdlib>
 
 
 using std::string;
 using std::cout;
 using std::cin;
 using std::vector;
+
 
 #endif // INCLUDS_H_INCLUDED
